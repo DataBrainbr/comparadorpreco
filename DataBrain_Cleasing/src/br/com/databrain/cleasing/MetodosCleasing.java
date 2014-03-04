@@ -11,7 +11,11 @@ import br.com.databrain.comparapreco.entities.*;
  */
 public class MetodosCleasing {
     
-    //Remover epaço duplo do texto
+    /**
+     * 
+     * @param p_Texto
+     * @return Texto sem espaços duplos
+     */
      public String retiraEspacoDuplo(String p_Texto){
          
         while (p_Texto.contains("  "))
