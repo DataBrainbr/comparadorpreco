@@ -3,6 +3,7 @@
  */
 package br.com.databrain.cleasing;
 
+import java.sql.*;
 import br.com.databrain.comparapreco.entities.*;
 
 /**
@@ -29,5 +30,33 @@ public class MetodosCleasing {
          
      }
      
-    
+    public String retiraTagsHTML(String p_Texto)
+    {
+        CleasingDAO cd = new CleasingDAO();
+        ResultSet tagsRs;
+        
+        try
+        {
+            tagsRs = cd.retiraTagsHTMLDAO();
+
+            while (tagsRs.next())
+            {
+                if(p_Texto.contains(tagsRs.getString("cleasing_tags_html")))
+                {
+                    p_Texto = p_Texto.replace(tagsRs.getString("cleasing_tags_html"), " ");
+                }
+            }
+            
+            return p_Texto;
+        }
+        
+        catch (Exception e)
+        {
+          System.err.println("Got an exception! ");
+          System.err.println(e.getMessage());
+          return "";
+        }
+        
+
+    }
 }
