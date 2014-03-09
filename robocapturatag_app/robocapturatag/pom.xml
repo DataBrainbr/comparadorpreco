@@ -27,5 +27,10 @@
       <artifactId>databrain_dao</artifactId>
       <version>1.0-SNAPSHOT</version>
    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>databrain_util</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>
