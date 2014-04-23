@@ -1,4 +1,4 @@
-package br.com.databrain.dao.mysql;
+package br.com.databrain.ui_form;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
