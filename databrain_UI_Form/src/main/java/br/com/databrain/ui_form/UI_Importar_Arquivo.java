@@ -37,6 +37,9 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
         txtFoneticaEntrada = new javax.swing.JTextField();
         txtFoneticaSaida = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        btnCaracEspecial = new javax.swing.JButton();
+        txtCaracEspEntrada = new javax.swing.JTextField();
+        txtCaracEspSaida = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +62,13 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
 
         txtFoneticaSaida.setText("jTextField2");
 
+        btnCaracEspecial.setLabel("caracter especial");
+        btnCaracEspecial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaracEspecialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,16 +76,19 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCaracEspSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtFoneticaSaida)
                             .addComponent(txtFoneticaEntrada)
-                            .addComponent(txtCaminhoArq, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+                            .addComponent(txtCaminhoArq, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(txtCaracEspEntrada))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnFonetizar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnFonetizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCaracEspecial, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,8 +106,16 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
                     .addComponent(txtFoneticaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFoneticaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCaracEspecial)
+                    .addComponent(txtCaracEspEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(txtCaracEspSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
         );
+
+        btnCaracEspecial.getAccessibleContext().setAccessibleName("caracter Especial");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -119,6 +140,15 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
         
         txtFoneticaSaida.setText(fn.Fonetizar(txtFoneticaEntrada.getText()));
     }//GEN-LAST:event_btnFonetizarActionPerformed
+
+    private void btnCaracEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaracEspecialActionPerformed
+        Cleasing cs = new Cleasing();
+        
+        txtCaracEspSaida.setText(cs.tratarDescricaoProduto(txtCaracEspEntrada.getText()));
+        
+        
+        
+    }//GEN-LAST:event_btnCaracEspecialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,10 +186,13 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCaracEspecial;
     private javax.swing.JButton btnFonetizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtCaminhoArq;
+    private javax.swing.JTextField txtCaracEspEntrada;
+    private javax.swing.JTextField txtCaracEspSaida;
     private javax.swing.JTextField txtFoneticaEntrada;
     private javax.swing.JTextField txtFoneticaSaida;
     // End of variables declaration//GEN-END:variables

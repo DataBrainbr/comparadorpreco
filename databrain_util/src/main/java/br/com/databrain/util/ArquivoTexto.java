@@ -52,7 +52,6 @@ public class ArquivoTexto   {
         {
             System.out.println(e.getMessage());
             throw e;
-            
         }
         
         finally

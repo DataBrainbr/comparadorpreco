@@ -8,7 +8,7 @@ package br.com.databrain.comparapreco;
 
 import br.com.databrain.dao.mysql.ConexaoMySql;
 import br.com.databrain.util.DoubleMetaPhone;
-import br.com.databrain.util.Cleasing;
+import br.com.databrain.util.cleasing.CleasingUtil;
 import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List; 
@@ -30,7 +30,7 @@ public class Fonetica {
         String[] dados;
         StringBuilder retorno = new StringBuilder();
         DoubleMetaPhone dmp = new DoubleMetaPhone();
-        Cleasing cs = new Cleasing();
+        CleasingUtil cs = new CleasingUtil();
         pTexto = cs.tirarEspacoDuplo(pTexto);
         
         if (pTexto.contains(" ")){
@@ -52,7 +52,7 @@ public class Fonetica {
     }
     
     /**
-     * 
+     * Verificar se o texto é pronome
      * @param pTexto
      * @return 
      */

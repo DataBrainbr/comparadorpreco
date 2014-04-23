@@ -49,6 +49,20 @@ public class ConexaoMySql {
         }
         return null;
     }
+    
+    public void FecharConexao()
+    {
+    
+        try{
+            if (!conbco.isClosed() )
+            {
+                conbco.close();
+            }
+        }
+        catch(Exception ex){
+            
+        }
+    }
 
     public void executarComando(String comandoSQL) throws Exception {
         Connection con = null;

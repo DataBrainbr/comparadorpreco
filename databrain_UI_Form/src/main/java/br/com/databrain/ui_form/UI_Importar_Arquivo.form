@@ -26,17 +26,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="txtCaracEspSaida" min="-2" pref="265" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="457" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="txtFoneticaSaida" max="32767" attributes="0"/>
                           <Component id="txtFoneticaEntrada" max="32767" attributes="0"/>
                           <Component id="txtCaminhoArq" pref="265" max="32767" attributes="0"/>
+                          <Component id="txtCaracEspEntrada" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="btnFonetizar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCaracEspecial" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -61,7 +64,14 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="txtFoneticaSaida" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="168" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCaracEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCaracEspEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="txtCaracEspSaida" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="163" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,6 +107,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCaracEspecial">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="caracter especial"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="caracter Especial"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCaracEspecialActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCaracEspEntrada">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCaracEspSaida">
     </Component>
   </SubComponents>
 </Form>

@@ -5,6 +5,8 @@ package br.com.databrain.entities;
  * @author Paulo
  */
 public class Produto extends Site{
+    private String _idUrl;
+    private String _url;
     private String _nomeProduto;
     private String _precoProduto;
     private String _descricaoProduto;
@@ -64,5 +66,33 @@ public class Produto extends Site{
      */
     public void setFotoProduto(String _fotoProduto) {
         this._fotoProduto = _fotoProduto;
+    }
+
+    /**
+     * @return the _idUrl
+     */
+    public String getIdUrl() {
+        return _idUrl;
+    }
+
+    /**
+     * @param _idUrl the _idUrl to set
+     */
+    public void setIdUrl(String _idUrl) {
+        this._idUrl = _idUrl;
+    }
+
+    /**
+     * @return the _url
+     */
+    public String getUrl() {
+        return _url;
+    }
+
+    /**
+     * @param _url the _url to set
+     */
+    public void setUrl(String _url) {
+        this._url = _url;
     }
 }
