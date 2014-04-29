@@ -92,6 +92,7 @@ public class Produto extends Site{
     /**
      * @param _url the _url to set
      */
+    @Override
     public void setUrl(String _url) {
         this._url = _url;
     }
