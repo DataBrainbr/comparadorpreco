@@ -85,6 +85,7 @@ public class Produto extends Site{
     /**
      * @return the _url
      */
+    @Override
     public String getUrl() {
         return _url;
     }
