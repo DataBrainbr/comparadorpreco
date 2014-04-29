@@ -21,6 +21,9 @@ public class ConexaoMySql {
 
 =======
     
+<<<<<<< HEAD
+>>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
+=======
 >>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
     public Connection abrirConexao() {
 
@@ -30,9 +33,15 @@ public class ConexaoMySql {
             String banco = "db_sistema";  //nome do banco
             String host = "127.0.0.1";  //maquina onde está o banco
             String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
+<<<<<<< HEAD
             String usuario = "user_sistema";
             String senha = "!@#$data%¨&*brain";
 
+=======
+            String usuario = "root";
+            String senha = "admin";
+            
+>>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
             Class.forName(driver); //carrega driver
 
             conbco = DriverManager.getConnection(str_conn, usuario, senha);
@@ -53,12 +62,15 @@ public class ConexaoMySql {
         return null;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Encerra a conexão com o banco de dados
  * @author Gustavo
  */
     public Connection fecharConexao() {
 =======
+=======
+>>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
     
     public void FecharConexao()
     {
@@ -73,6 +85,9 @@ public class ConexaoMySql {
             
         }
     }
+<<<<<<< HEAD
+>>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
+=======
 >>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
 
         try {
@@ -112,6 +127,36 @@ public class ConexaoMySql {
             ex.printStackTrace();
         } finally {
             fecharConexao();
+        }
+    }
+    
+    public ResultSet retornarResultSet(String pSQL)throws Exception{
+        Connection con = null;
+
+        try {
+            abrirConexao();
+        } 
+        catch (Exception ex) {
+            throw ex;
+        }
+        try {
+            
+            Statement stmt = (Statement)conbco.createStatement();
+            ResultSet retorno = stmt.executeQuery(pSQL);
+            
+            return retorno;
+           
+        }
+        catch (SQLException sqle) {  
+            return null;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        } 
+        
+        finally{
+            //fecharconexao
         }
     }
     
