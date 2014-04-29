@@ -15,16 +15,7 @@ import java.sql.ResultSet;
 public class ConexaoMySql {
 
     Connection conbco;
-<<<<<<< HEAD
-//    EntityManagerFactory factory = Persistence.createEntityManagerFactory("minhaapppersistenceunit");
-//    EntityManager entityManager = factory.createEntityManager();
-
-=======
     
-<<<<<<< HEAD
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
-=======
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
     public Connection abrirConexao() {
 
         try {
@@ -33,15 +24,10 @@ public class ConexaoMySql {
             String banco = "db_sistema";  //nome do banco
             String host = "127.0.0.1";  //maquina onde está o banco
             String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
-<<<<<<< HEAD
+
             String usuario = "user_sistema";
             String senha = "!@#$data%¨&*brain";
 
-=======
-            String usuario = "root";
-            String senha = "admin";
-            
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
             Class.forName(driver); //carrega driver
 
             conbco = DriverManager.getConnection(str_conn, usuario, senha);
@@ -61,19 +47,13 @@ public class ConexaoMySql {
         }
         return null;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 /**
  * Encerra a conexão com o banco de dados
  * @author Gustavo
  */
-    public Connection fecharConexao() {
-=======
-=======
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
-    
-    public void FecharConexao()
-    {
+ 
+    public void FecharConexao(){
     
         try{
             if (!conbco.isClosed() )
@@ -85,24 +65,8 @@ public class ConexaoMySql {
             
         }
     }
-<<<<<<< HEAD
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
-=======
->>>>>>> 58a7bb6a71271a1c3f960e5082cd551a39ea28fa
 
-        try {
-            conbco.close();
-            if (conbco.isClosed()) {
-                System.out.println("Conexão encerrada.");
-            }
-//Esta linha precisa descomentar, porém fica gerando erro.
-//        } catch (ClassNotFoundException e) {
-//            System.err.println("ClassNotFoundException: " + e.getMessage());
-        } catch (SQLException e) {
-            System.err.println("SQLException: " + e.getMessage());
-        }
-        return null;
-    }
+
 /**
  * 
  * @param comandoSQL = Instrução SQL a ser executada (insert, update, delete...)
@@ -126,37 +90,7 @@ public class ConexaoMySql {
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
-            fecharConexao();
-        }
-    }
-    
-    public ResultSet retornarResultSet(String pSQL)throws Exception{
-        Connection con = null;
-
-        try {
-            abrirConexao();
-        } 
-        catch (Exception ex) {
-            throw ex;
-        }
-        try {
-            
-            Statement stmt = (Statement)conbco.createStatement();
-            ResultSet retorno = stmt.executeQuery(pSQL);
-            
-            return retorno;
-           
-        }
-        catch (SQLException sqle) {  
-            return null;
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        } 
-        
-        finally{
-            //fecharconexao
+            FecharConexao();
         }
     }
     
