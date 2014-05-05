@@ -48,7 +48,7 @@ public class ImportarArquivoSite {
                 produto.setFotoProduto(array[2].toString());
                 produto.setDescricaoProduto(array[3].toString());
                 
-                 bco.inserirLinkBanco(produto);
+                bco.inserirLinkBanco(produto);
             }
         }
         

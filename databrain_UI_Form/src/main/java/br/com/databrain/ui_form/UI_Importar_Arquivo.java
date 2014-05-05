@@ -8,6 +8,7 @@ package br.com.databrain.ui_form;
 
 import br.com.databrain.comparapreco.*;
 import br.com.databrain.entities.*;
+import java.util.Date;
 
 /**
  *
@@ -40,6 +41,10 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
         btnCaracEspecial = new javax.swing.JButton();
         txtCaracEspEntrada = new javax.swing.JTextField();
         txtCaracEspSaida = new javax.swing.JTextField();
+        btnTratarLink = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtProcInicio = new javax.swing.JTextField();
+        txtProcFim = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,14 +74,26 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
             }
         });
 
+        btnTratarLink.setText("Tratar");
+        btnTratarLink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTratarLinkActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Tratar produtos");
+
+        txtProcInicio.setText("inicio proc");
+
+        txtProcFim.setText("fim proc");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCaracEspSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -88,8 +105,22 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnFonetizar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCaracEspecial, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                            .addComponent(btnCaracEspecial, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTratarLink))
+                            .addComponent(txtCaracEspSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtProcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtProcFim, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +143,14 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
                     .addComponent(txtCaracEspEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(txtCaracEspSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTratarLink)
+                    .addComponent(jLabel1)
+                    .addComponent(txtProcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtProcFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         btnCaracEspecial.getAccessibleContext().setAccessibleName("caracter Especial");
@@ -143,12 +181,29 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
 
     private void btnCaracEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaracEspecialActionPerformed
         Cleasing cs = new Cleasing();
+        Produto prd = new Produto();
         
-        txtCaracEspSaida.setText(cs.tratarDescricaoProduto(txtCaracEspEntrada.getText()));
+        prd.setDescricaoProduto(txtCaracEspEntrada.getText());
+        
+        prd = cs.tratarProduto(prd);
+        
+        txtCaracEspSaida.setText(prd.getDescricaoProduto());
         
         
         
     }//GEN-LAST:event_btnCaracEspecialActionPerformed
+
+    private void btnTratarLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTratarLinkActionPerformed
+         Cleasing cs = new Cleasing();
+         
+         Date dt = new Date();
+         
+         txtProcInicio.setText(dt.toString());
+         
+         cs.tratarProdutoETL();
+         
+         txtProcFim.setText(dt.toString());
+    }//GEN-LAST:event_btnTratarLinkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +243,16 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCaracEspecial;
     private javax.swing.JButton btnFonetizar;
+    private javax.swing.JButton btnTratarLink;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtCaminhoArq;
     private javax.swing.JTextField txtCaracEspEntrada;
     private javax.swing.JTextField txtCaracEspSaida;
     private javax.swing.JTextField txtFoneticaEntrada;
     private javax.swing.JTextField txtFoneticaSaida;
+    private javax.swing.JTextField txtProcFim;
+    private javax.swing.JTextField txtProcInicio;
     // End of variables declaration//GEN-END:variables
 }
