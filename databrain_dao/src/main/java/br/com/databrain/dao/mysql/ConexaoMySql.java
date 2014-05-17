@@ -2,11 +2,9 @@ package br.com.databrain.dao.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
-     
 
 /**
  *
@@ -26,7 +24,7 @@ public class ConexaoMySql {
             String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
 
             String usuario = "user_sistema";
-            String senha = "!@#$data%¨&*brain";
+            String senha = "db@!2014L";
 
             Class.forName(driver); //carrega driver
 
@@ -54,7 +52,6 @@ public class ConexaoMySql {
  */
  
     public void FecharConexao(){
-    
         try{
             if (!conbco.isClosed() )
             {
@@ -62,10 +59,8 @@ public class ConexaoMySql {
             }
         }
         catch(Exception ex){
-            
         }
     }
-
 
 /**
  * 
@@ -124,3 +119,5 @@ public class ConexaoMySql {
         }
     }
 }
+//teste
+//teste2
