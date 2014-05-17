@@ -26,7 +26,7 @@ public class ConexaoMySql {
             String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
 
             String usuario = "user_sistema";
-            String senha = "!@#$data%¨&*brain";
+            String senha = "db@!2014L";
 
             Class.forName(driver); //carrega driver
 
