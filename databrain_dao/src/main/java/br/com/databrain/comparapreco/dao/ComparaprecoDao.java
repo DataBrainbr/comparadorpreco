@@ -8,7 +8,7 @@ package br.com.databrain.comparapreco.dao;
 
 import br.com.databrain.dao.mysql.ConexaoMySql;
 import br.com.databrain.entities.Produto;
-import br.com.databrain.util.dao.CleasingDao;
+import br.com.databrain.entities.Site;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,55 +22,7 @@ import java.util.logging.Logger;
  */
 public class ComparaprecoDao {
     
-    /**
-     * Inserir link importado do crawler para base ETL
-     * @param pProduto 
-     */
-    public void inserirLinkBanco(Produto pProduto)
-    {
-        StringBuilder sb = new StringBuilder();
-        ConexaoMySql cn = new ConexaoMySql();
-        
-        sb.append("Insert Into etl_link "
-                + "(Loja_Cliente_Id, Produto_Nome, Produto_Preco, Produto_Foto, Produto_Descricao) "
-                + "Values (");
-        sb.append(pProduto.getId());
-        sb.append(",");
-        sb.append("'");
-        sb.append(pProduto.getNomeProduto());
-        sb.append("' ,");
-        sb.append("'");
-        sb.append(pProduto.getPrecoProduto());
-        sb.append("' ,");
-        sb.append("'");
-        sb.append(pProduto.getFotoProduto());
-        sb.append("' ,");
-        sb.append("'");
-        sb.append(pProduto.getDescricaoProduto());
-        sb.append("');");
-        
-        try {
-            cn.executarComando(sb.toString());
-        }
-        
-        catch (SQLException e) {
-            //Não conseguindo se conectar ao banco 
-            System.out.println("Nao foi possivel conectar ao Banco de Dados.");
-        }
-        
-        catch(Exception ex){
-            System.out.println("Problemas para execuar inserção dos dados");
-            System.out.println(ex.getMessage());
-        }
-        
-        finally{
-            
-            cn.FecharConexao();
-            
-        }
-                
-    }
-    /**
+     /**
      * Retornar lista de produtos/links carregados para tratamento
      * @return 
      */
@@ -79,8 +31,10 @@ public class ComparaprecoDao {
         ConexaoMySql cn = new ConexaoMySql();
         
         StringBuilder sb = new StringBuilder();
-        sb.append("Select loja_cliente_Id, produto_nome, produto_preco, produto_foto," +
-                "produto_descricao, produto_url From etl_link");
+        sb.append(""
+                + "Select loja_cliente_Id, produto_nome, produto_preco, produto_foto," +
+                "produto_descricao, produto_url "+ 
+                "From etl_link");
         
         List<Produto> retorno = new ArrayList<Produto>();
         
@@ -110,7 +64,7 @@ public class ComparaprecoDao {
         } 
         
         catch (Exception ex) {
-            Logger.getLogger(CleasingDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComparaprecoDao.class.getName()).log(Level.SEVERE, null, ex);
             return retorno;
         }       
         
@@ -131,7 +85,7 @@ public class ComparaprecoDao {
         ConexaoMySql cn = new ConexaoMySql();
         
         sb.append("Insert Into etl_link_tratado "
-                + "(Loja_Cliente_Id, Produto_Nome, Produto_Preco, Produto_Foto, Produto_Descricao) "
+                + "(Loja_Cliente_Id, Produto_Nome, Produto_Preco, Produto_Foto_URL, Produto_Descricao) "
                 + "Values (");
         sb.append(pProduto.getId());
         sb.append(",");
@@ -167,6 +121,50 @@ public class ComparaprecoDao {
             cn.FecharConexao();
             
         }
+        
+    }
+    
+    public Site retonarDadosSite(int _id){
+        Site st = new Site();
+        StringBuilder sb = new StringBuilder();
+        ConexaoMySql cn = new ConexaoMySql();
+        sb.append("Select loja_cliente_Id, loja_cliente_nome, "
+                + "loja_cliente_web_site, loja_cliente_caminho_foto "
+                + "From loja_cliente "
+                + "Where loja_cliente_id = " + _id);
+        
+        try{
+            
+            ResultSet rs = cn.retornarResultSet(sb.toString());
+            
+            
+            while(rs.next()){            
+                st.setId(rs.getInt("loja_cliente_Id"));
+                
+                
+                
+            }
+                         
+            return st;
+        }
+        
+        catch(SQLException ex){
+            
+            return st;
+        } 
+        
+        catch (Exception ex) {
+            Logger.getLogger(ComparaprecoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return st;
+        }       
+        
+         finally{
+            
+            cn.FecharConexao();
+            
+        }
+        
+        
         
     }
 }

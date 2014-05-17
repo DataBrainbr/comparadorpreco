@@ -15,6 +15,7 @@ public class Foto {
     private int _link_id;
     private String _foto_url;
     private String _foto_url_original;
+    private String _foto_nome_arquivo;
 
     public int getFoto_id() {
         return _foto_id;
@@ -46,6 +47,20 @@ public class Foto {
 
     public void setFoto_url_original(String _foto_url_original) {
         this._foto_url_original = _foto_url_original;
+    }
+
+    /**
+     * @return the _foto_nome_arquivo
+     */
+    public String getFoto_nome_arquivo() {
+        return _foto_nome_arquivo;
+    }
+
+    /**
+     * @param _foto_nome_arquivo the _foto_nome_arquivo to set
+     */
+    public void setFoto_nome_arquivo(String _foto_nome_arquivo) {
+        this._foto_nome_arquivo = _foto_nome_arquivo;
     }
     
     

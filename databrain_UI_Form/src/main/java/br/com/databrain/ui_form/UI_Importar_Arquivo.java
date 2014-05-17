@@ -188,9 +188,7 @@ public class UI_Importar_Arquivo extends javax.swing.JFrame {
         prd = cs.tratarProduto(prd);
         
         txtCaracEspSaida.setText(prd.getDescricaoProduto());
-        
-        
-        
+    
     }//GEN-LAST:event_btnCaracEspecialActionPerformed
 
     private void btnTratarLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTratarLinkActionPerformed

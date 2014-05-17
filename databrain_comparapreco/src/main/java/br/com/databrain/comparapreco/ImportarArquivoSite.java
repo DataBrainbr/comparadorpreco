@@ -9,11 +9,8 @@ package br.com.databrain.comparapreco;
 import java.util.List;  
 import java.util.Arrays;
 import br.com.databrain.util.ArquivoTexto;
-import br.com.databrain.entities.*;
-import br.com.databrain.dao.mysql.ConexaoMySql;
-import br.com.databrain.comparapreco.dao.ComparaprecoDao;
-import java.sql.SQLException;
-
+import br.com.databrain.persistence.model.EtlLink;
+import br.com.databrain.persistence.dao.EtlLinkDao;
 
 /**
  *
@@ -27,11 +24,10 @@ public class ImportarArquivoSite {
      */
     public void importarArquivoSite(String pArquivo) throws Exception
     {
-        
-        ComparaprecoDao bco = new ComparaprecoDao();
+        EtlLinkDao etlDao = new EtlLinkDao();
         List<String> dados = Arrays.asList();
         ArquivoTexto pr = new ArquivoTexto();
-        Produto produto = new Produto();
+        EtlLink etl = new EtlLink();
         String[] array;      
         
         try
@@ -42,13 +38,15 @@ public class ImportarArquivoSite {
                 
                 array = e.split("\\|");
                 
-                produto.setId(1);
-                produto.setNomeProduto(array[0].toString());
-                produto.setPrecoProduto(array[1].toString());
-                produto.setFotoProduto(array[2].toString());
-                produto.setDescricaoProduto(array[3].toString());
+                etl.setLoja_cliente_id(1);
+                etl.setProduto_url("teste");
+                etl.setProduto_nome(array[0].toString());
+                etl.setProduto_preco(array[1].toString());
+                etl.setProduto_foto(array[2].toString());
+                etl.setProduto_descricao(array[3].toString());  
                 
-                bco.inserirLinkBanco(produto);
+               
+                etlDao.salvarLink(etl);
             }
         }
         

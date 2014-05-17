@@ -6,11 +6,12 @@
 
 package br.com.databrain.comparapreco;
 
-import br.com.databrain.util.cleasing.CleasingUtil;
-import br.com.databrain.util.dao.CleasingDao;
+import br.com.databrain.comparapreco.cleasing.CleasingTratamentoTexto;
 import br.com.databrain.entities.*;
 import br.com.databrain.comparapreco.dao.ComparaprecoDao;
-
+import br.com.databrain.persistence.dao.CleasingCaracterEspecialDao;
+import br.com.databrain.persistence.dao.CleasingTagsHtmlDao;
+import br.com.databrain.persistence.model.*;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -50,7 +51,7 @@ public class Cleasing {
                 produtoTratado.setDescricaoProduto(tratarDescricaoProduto(e.getDescricaoProduto()));
                 produtoTratado.setNomeProduto(tratarNomeProduto(e.getNomeProduto()));
                 produtoTratado.setPrecoProduto(tratarPrecoProduto(e.getPrecoProduto()));
-                produtoTratado.setFotoProduto(tratarFotoProduto(e.getFotoProduto()));
+                produtoTratado.setFotoProduto(tratarFotoProdutoURL(e.getFotoProduto()));
                 
                 dao.inserirLinkTratado(produtoTratado);
             }
@@ -66,13 +67,15 @@ public class Cleasing {
      * Carregar tabela conhecimento para HashMap de Caracter Especial
      */
     private void carregarHashMapCaracterEspecial(){
-        CleasingDao cs = new CleasingDao();
+        //CleasingDao cs = new CleasingDao();
+        CleasingCaracterEspecialDao cs = new CleasingCaracterEspecialDao();
         
         List<CleasingCaracterEspecial> retorno = new ArrayList<CleasingCaracterEspecial>();
+        //retorno = cs.retornaListaCaracterEspecial();
         retorno = cs.retornaListaCaracterEspecial();
         
         for (CleasingCaracterEspecial e : retorno)  {
-            hmCaracterEspecial.put(e.getCaracterDe(), e.getCaracterPara());
+            hmCaracterEspecial.put(e.getCleasing_caracter_especial(), e.getCleasing_caracter_correto());
         } 
     }
 
@@ -80,13 +83,13 @@ public class Cleasing {
      * Carregar tabela conhecimento para HashMap de Tags HTML
      */
     private void carregarHashMapTagsHTML(){
-        CleasingDao cs = new CleasingDao();
+        CleasingTagsHtmlDao cs = new CleasingTagsHtmlDao();
         
         List<CleasingTagsHtml> retorno = new ArrayList<CleasingTagsHtml>();
         retorno = cs.retornaListaTagsHtml();
         
         for (CleasingTagsHtml e : retorno)  {
-            hmTagsHTML.put(e.getCaracterDe(), e.getCaracterPara());
+            hmTagsHTML.put(e.getCleasing_tags_html(), " ");
             
         } 
     }   
@@ -147,8 +150,15 @@ public class Cleasing {
      * @param pTexto
      * @return 
      */
-    private String tratarFotoProduto(String pTexto){
+    private String tratarFotoProdutoURL(String pTexto){
         pTexto = tratamentoPadrao(pTexto);
+        
+        pTexto = pTexto.replace("http://", "");
+        
+        
+                
+            
+            
         
         return pTexto;
     }
@@ -160,7 +170,7 @@ public class Cleasing {
      * @return 
      */
     private String tratamentoPadrao(String pTexto){
-        CleasingUtil tratar = new CleasingUtil();
+        CleasingTratamentoTexto tratar = new CleasingTratamentoTexto();
         
         pTexto = pTexto.trim();
         

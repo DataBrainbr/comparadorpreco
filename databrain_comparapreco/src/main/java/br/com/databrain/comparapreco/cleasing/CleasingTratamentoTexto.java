@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package br.com.databrain.util.cleasing;
+package br.com.databrain.comparapreco.cleasing;
 
-import br.com.databrain.entities.*;
-import br.com.databrain.util.dao.CleasingDao;
+import br.com.databrain.persistence.model.*;
+import br.com.databrain.persistence.dao.*;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -16,7 +16,7 @@ import java.util.*;
  *
  * @author Paulo
  */
-public class CleasingUtil {
+public class CleasingTratamentoTexto {
     
     /**
      * Retirar espaços duplos do conteúdo do texto
@@ -56,17 +56,18 @@ public class CleasingUtil {
      * @return 
      * @author Paulo Henrique
      */
+    
     public String trocarCaracterEspecial(String p_Texto)
     {
-        CleasingDao cd = new CleasingDao();
+        CleasingCaracterEspecialDao cd = new CleasingCaracterEspecialDao();
         String retorno = p_Texto;
         List<CleasingCaracterEspecial> lista = new ArrayList<CleasingCaracterEspecial>();
         
         lista = cd.retornaListaCaracterEspecial();
         
         for (CleasingCaracterEspecial e : lista)  {
-            if(retorno.contains(e.getCaracterDe())){
-                retorno = retorno.replace(e.getCaracterDe(), e.getCaracterPara());
+            if(retorno.contains(e.getCleasing_caracter_especial())){
+                retorno = retorno.replace(e.getCleasing_caracter_especial(), e.getCleasing_caracter_correto());
             } 
         }
     
@@ -111,15 +112,15 @@ public class CleasingUtil {
      */
     public String trocarTagsHtml(String p_Texto)
     {
-        CleasingDao cd = new CleasingDao();
+        CleasingTagsHtmlDao cd = new CleasingTagsHtmlDao();
         String retorno = p_Texto;
         List<CleasingTagsHtml> lista = new ArrayList<CleasingTagsHtml>();
         
         lista = cd.retornaListaTagsHtml();
         
         for (CleasingTagsHtml e : lista)  {
-            if(retorno.contains(e.getCaracterDe())){
-                retorno = retorno.replace(e.getCaracterDe(), e.getCaracterPara());
+            if(retorno.contains(e.getCleasing_tags_html())){
+                retorno = retorno.replace(e.getCleasing_tags_html(), " ");
             } 
         }
     
