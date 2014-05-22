@@ -21,13 +21,20 @@ public class ConexaoMySql {
         try {
             // Carregando o JDBC Driver padrão 
             String driver = "com.mysql.jdbc.Driver";  //classe driver JDBC
+            
+//            String banco = "db_sistema";  //nome do banco
+//            String host = "127.0.0.1";  //maquina onde está o banco
+//            String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
+//
+            //Servidor remoto
+            String host = "192.186.200.73";  //maquina onde está o banco
             String banco = "db_sistema";  //nome do banco
-            String host = "127.0.0.1";  //maquina onde está o banco
-            String str_conn = "jdbc:mysql://" + host + ":3307/" + banco; //URL de conexao
-
+            String str_conn = "jdbc:mysql://" + host + ":3306/" + banco; //URL de conexao
             String usuario = "user_sistema";
             String senha = "db@!2014L";
 
+            
+            
             Class.forName(driver); //carrega driver
 
             conbco = DriverManager.getConnection(str_conn, usuario, senha);
@@ -65,7 +72,6 @@ public class ConexaoMySql {
             
         }
     }
-
 
 /**
  * 
