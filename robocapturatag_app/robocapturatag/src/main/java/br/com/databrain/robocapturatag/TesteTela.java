@@ -38,9 +38,7 @@ public class TesteTela {
                 System.out.println("Erro ao excluir registro");
             }            
         }
-        
-
-
+       
         System.out.println("teste gustavo");
     }
 

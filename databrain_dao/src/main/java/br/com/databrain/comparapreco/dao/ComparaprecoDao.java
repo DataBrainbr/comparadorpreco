@@ -70,8 +70,7 @@ public class ComparaprecoDao {
         
          finally{
             
-            cn.FecharConexao();
-            
+            cn.FecharConexao();    
         }
     }
         
@@ -163,8 +162,6 @@ public class ComparaprecoDao {
             cn.FecharConexao();
             
         }
-        
-        
         
     }
 }

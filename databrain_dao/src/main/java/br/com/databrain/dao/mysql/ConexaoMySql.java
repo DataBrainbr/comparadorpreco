@@ -2,10 +2,9 @@ package br.com.databrain.dao.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
      
 
 /**
@@ -30,11 +29,9 @@ public class ConexaoMySql {
             String host = "192.186.200.73";  //maquina onde está o banco
             String banco = "db_sistema";  //nome do banco
             String str_conn = "jdbc:mysql://" + host + ":3306/" + banco; //URL de conexao
-            String usuario = "user_sistema";
+            String usuario = "usersistema";
             String senha = "db@!2014L";
 
-            
-            
             Class.forName(driver); //carrega driver
 
             conbco = DriverManager.getConnection(str_conn, usuario, senha);
@@ -129,4 +126,25 @@ public class ConexaoMySql {
             //fecharconexao
         }
     }
+    public void alteraSite(String comandoSQL) throws Exception {
+        Connection con = null;
+
+        try {
+            abrirConexao();
+        } catch (Exception ex) {
+            throw ex;
+        }
+        try {
+            String conexao = new String();
+            Statement comando = (Statement) conbco.createStatement();
+            // Insere retornando o ID criado.
+            comando.execute(comandoSQL);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            FecharConexao();
+        }
+    }    
 }
+
